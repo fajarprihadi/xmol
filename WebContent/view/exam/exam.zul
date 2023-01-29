@@ -1,0 +1,182 @@
+<?link rel="stylesheet" href="/resources/bootstrap/4.3.1/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="/resources/css/zk-admin-bootstrap-theme.css"?>
+<?link rel="stylesheet" href="/resources/css/layout.css" ?>
+<?link rel="stylesheet" href="/resources/css/zk-bootstrap.css" ?>
+<zk xmlns:n="native">
+	<div sclass="container-fluid" hflex="1"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.ExamVM')"
+		validationMessages="@id('vmsgs')">
+		<n:div class="row py-1">
+			<n:div class="col-12 p-1">
+				<div id="divExam">
+					<panel border="normal">
+						<panelchildren>
+							<div
+								form="@id('e') @load(vm.objForm) @save(vm.objForm, before='doStart')
+			@validator(vm.validator) ">
+								<div sclass="container-fluid" hflex="1"
+									align="center">
+									<n:p>
+										<n:h3>
+											Selamat datang di Program
+											Recruitment PT Swadharma
+											Duta Data
+										</n:h3>
+										Sebelum Anda memulai tes,
+										Silahkan isi identitas diri Anda
+										secara lengkap dan benar.
+										<n:br />
+										Anda akan dihadapkan
+										<label
+											value="@load(vm.objForm.jumlahsoal)"
+											style="font-size: 16px; font-weight: bold" />
+										Tes soal dalam waktu
+										<label
+											value="@load(vm.objForm.durasi)"
+											style="font-size: 16px; font-weight: bold" />
+										menit.
+										<n:br />
+										tes ini menggunakan sistem
+										gugur, apabila Anda lulus akan
+										lanjut di tahap Interview.
+										<n:br />
+										Selamat mengerjakan dan semoga
+										berhasil.
+									</n:p>
+								</div>
+								<div sclass="container-fluid"
+									hflex="1">
+									<div class="card">
+										<div class="card-header">
+											<n:h5>
+												Silahkan isi identitas
+												diri Anda
+											</n:h5>
+										</div>
+										<div class="card-body">
+
+											<n:table
+												class="table table-sm table-striped">
+												<n:tr>
+													<n:td>
+														<label
+															value="Nama" />
+													</n:td>
+													<n:td>
+														<textbox
+															value="@bind(e.nama)" maxlength="40" />
+														<label
+															style="color:red" value="@load(vmsgs['nama'])" />
+													</n:td>
+												</n:tr>
+												<n:tr>
+													<n:td>
+														<label
+															value="Tanggal Lahir" />
+													</n:td>
+													<n:td>
+														<datebox
+															value="@bind(e.tgllahir)" format="dd-MM-yyyy" />
+														<label
+															style="color:red" value="@load(vmsgs['tgllahir'])" />
+													</n:td>
+												</n:tr>
+												<n:tr>
+													<n:td>
+														<label
+															value="Alamat" />
+													</n:td>
+													<n:td>
+														<textbox
+															value="@bind(e.alamat)" maxlength="200" rows="3"
+															cols="50" />
+														<label
+															style="color:red" value="@load(vmsgs['alamat'])" />
+													</n:td>
+												</n:tr>
+												<n:tr>
+													<n:td>
+														<label
+															value="Kota" />
+													</n:td>
+													<n:td>
+														<textbox
+															value="@bind(e.kota)" maxlength="40" cols="40" />
+														<label
+															style="color:red" value="@load(vmsgs['kota'])" />
+													</n:td>
+												</n:tr>
+												<n:tr>
+													<n:td>
+														<label
+															value="No HP" />
+													</n:td>
+													<n:td>
+														<textbox
+															value="@bind(e.nohp)" maxlength="20" />
+														<label
+															style="color:red" value="@load(vmsgs['nohp'])" />
+													</n:td>
+												</n:tr>
+												<n:tr>
+													<n:td>
+														<label
+															value="E-mail" />
+													</n:td>
+													<n:td>
+														<textbox
+															value="@bind(e.email)" maxlength="100" cols="50" />
+														<label
+															style="color:red" value="@load(vmsgs['email'])" />
+													</n:td>
+												</n:tr>
+												<n:tr>													
+													<n:td colspan="2">
+														<groupbox>
+															<caption
+																label="Silahkan upload dokumen jika ada (CV, Foto, dll)" />
+															<button
+																label="Browse Dokumen" sclass="btn btn-primary btn-sm"
+																upload="true,maxsize=5000,multiple=true"
+																onUpload="@command('doUpload', upEvent=event)"
+																autodisable="self" />
+																<separator />
+															<div id="divFiles" />
+														</groupbox>
+													</n:td>
+												</n:tr>
+												<n:tr>
+													<n:td>
+														<label />
+													</n:td>
+													<n:td>
+														<button id="btStart"
+															sclass="btn btn-primary" autodisable="self" label="Mulai"
+															onClick="@command('doStart')" width="250px" />
+													</n:td>
+												</n:tr>
+											</n:table>
+										</div>
+										<div
+											class="card-footer text-muted">
+											<div align="center">
+												<n:span>
+													&#169; Copyright
+													2020
+												</n:span>
+												<n:br />
+												<image
+													src="/resources/image/sdd.png" width="80px" height="40px"/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</panelchildren>
+					</panel>
+				</div>
+			</n:div>
+		</n:div>
+	</div>
+</zk>

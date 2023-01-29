@@ -1,0 +1,77 @@
+<zk xmlns:n="native">
+	<window id="winQuestEdit" width="98%" border="normal"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.QuestionEditVM')"
+		validationMessages="@id('vmsgs')">
+		<caption label="Edit Soal" />
+		<panel title="Soal" border="normal">
+			<panelchildren>
+				<groupbox mold="3d"
+					form="@id('e') @load(vm.objForm) @save(vm.objForm, before='doSave')
+			@validator(vm.validator) ">
+					<caption label="Form Soal" />
+					<grid>
+						<columns>
+							<column width="120px" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<label value="Pertanyaan" />
+								<vlayout>
+									<button label="Upload Gambar"
+										sclass="btn btn-default btn-sm" upload="true,maxsize=2048"
+										onUpload="@command('doUpload', upEvent=event)"
+										autodisable="self" />
+									<image id="img" />
+									<hlayout>
+										<textbox placeholder="Soal"
+											value="@bind(e.questiontext)" maxlength="500" rows="5"
+											cols="100" multiline="true" />
+										<label style="color:red"
+											value="@load(vmsgs['questiontext'])" />
+									</hlayout>
+								</vlayout>
+							</row>
+							<row>
+								<label value="Jawaban" />
+								<div
+									form="@id('f') @load(vm.objAnswer) @save(vm.objAnswer, before='doSaveAnswer') @validator(vm.validatorAnswer) ">
+									<hlayout>
+										<textbox placeholder="Jawaban"
+											value="@bind(f.answertext)" maxlength="250" rows="3"
+											cols="100" />
+										<label style="color:red"
+											value="@load(vmsgs['answertext'])" />
+									</hlayout>
+									<separator />
+									<checkbox id="chkRight"
+										label="Set Sebagai Jawaban Benar" />
+									<separator />
+									<button
+										sclass="btn btn-success btn-sm" autodisable="self"
+										label="Simpan Jawaban" onClick="@command('doSaveAnswer')" />
+									<separator />
+								</div>
+							</row>
+							<row>
+								<label />
+								<div id="divAnswers" />
+							</row>
+						</rows>
+						<foot>
+							<footer />
+							<footer>
+								<n:div class="btn-group" role="group">
+									<button id="btnSave"
+										sclass="btn btn-primary btn-sm" autodisable="self"
+										label="Update" onClick="@command('doSave')"
+										width="200px" />																		
+								</n:div>
+							</footer>
+						</foot>
+					</grid>
+				</groupbox>				
+			</panelchildren>
+		</panel>
+	</window>
+</zk>

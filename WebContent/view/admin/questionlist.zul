@@ -1,0 +1,54 @@
+<zk xmlns:n="native">
+	<window width="98%" border="normal"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.QuestionListVM')"
+		validationMessages="@id('vmsgs')">
+		<caption label="Daftar Soal" />
+
+		<panel title="Informasi Bank Soal" border="normal">
+			<panelchildren>
+				<grid>
+					<columns>
+						<column width="170px" />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="Departemen" />
+							<label value="@load(vm.obj.mdepartment.deptcode)" />
+						</row>
+						<row>
+							<label value="Kode Soal" />
+							<label value="@load(vm.obj.kodesoal)" />
+						</row>
+						<row>
+							<label value="Deskripsi" />
+							<label value="@load(vm.obj.deskripsi)" />
+						</row>
+						<row>
+							<label value="Jumlah Soal" />
+							<label value="@load(vm.obj.jumlahsoal)" />
+						</row>
+						<row>
+							<label value="Jumlah Soal Yang Diujikan" />
+							<label value="@load(vm.obj.examsoal)" />
+						</row>
+						<row>
+							<label value="Durasi Tes (Menit)" />
+							<label value="@load(vm.obj.durasi)" />
+						</row>
+						<row>
+							<label value="Passing Score (%)" />
+							<label value="@load(vm.obj.passingscore)" />
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		<separator />
+		<panel title="Soal" border="normal">
+			<panelchildren>
+				<div id="divQuestList" />
+			</panelchildren>
+		</panel>
+	</window>
+</zk>

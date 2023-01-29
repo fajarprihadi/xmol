@@ -1,0 +1,19 @@
+<?page title="${desktop.webApp.appName}" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/app_icon.ico" ?>
+<?link rel="stylesheet" href="/resources/bootstrap/4.3.1/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="/resources/css/zk-admin-bootstrap-theme.css"?>
+<?link rel="stylesheet" href="/resources/css/layout.css" ?>
+<?link rel="stylesheet" href="/resources/css/zk-bootstrap.css" ?>
+<zk xmlns:w="client" xmlns:n="native">
+	<style>
+		body { background: #b9cbce url('/tms/images/header_bg.jpg');
+			background-repeat: repeat-y;
+			background-position: top center;
+		}		
+	</style>
+	<window width="500px" height="200px" border="none" position="center" mode="overlapped">
+		<div sclass="jumbotron">
+			<n:p>Sorry, you don't have access.</n:p>			
+		</div>		
+	</window>
+</zk>

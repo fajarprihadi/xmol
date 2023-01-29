@@ -1,0 +1,196 @@
+<zk xmlns:n="native">
+	<window border="normal" width="100%"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.ExamDetailVM')"
+		validationMessages="@id('vmsgs')">
+		<caption label="Detail Evaluasi" />
+		<div sclass="container-fluid" hflex="1">
+			<groupbox mold="3d">
+				<caption label="Data Kandidat" />
+				<n:table class="table table-sm table-striped">
+					<n:tr>
+						<n:td>
+							<label value="Departemen"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.deptcode)" />
+						</n:td>
+						<n:td>
+							<label value="Nama"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.nama)" />
+						</n:td>
+					</n:tr>
+					<n:tr>
+						<n:td>
+							<label value="Kode Soal"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label
+								value="@load(vm.obj.tbanksoal.kodesoal)" />
+						</n:td>
+						<n:td>
+							<label value="Tgl Lahir"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label
+								value="@load(vm.obj.tgllahir) @converter('formatedDate', format='dd-MM-yyyy')" />
+						</n:td>
+					</n:tr>
+					<n:tr>
+						<n:td>
+							<label value="Deskripsi Soal"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label
+								value="@load(vm.obj.tbanksoal.deskripsi)" />
+						</n:td>
+						<n:td>
+							<label value="Alamat"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.alamat)" />
+						</n:td>
+					</n:tr>
+					<n:tr>
+						<n:td>
+							<label value="Jumlah Soal"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.jumlahsoal)" />
+						</n:td>
+						<n:td>
+							<label value="Kota"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.kota)" />
+						</n:td>
+					</n:tr>
+					<n:tr>
+						<n:td>
+							<label value="Durasi Tes"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.durasi)" />
+							<label value="Menit" />
+						</n:td>
+						<n:td>
+							<label value="No HP"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.nohp)" />
+						</n:td>
+					</n:tr>
+					<n:tr>
+						<n:td>
+							<label value="Passing Score"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.passingscore)" />
+							<label value="%" />
+						</n:td>
+						<n:td>
+							<label value="E-mail"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.email)" />
+						</n:td>
+					</n:tr>
+					<n:tr>
+						<n:td>
+							<label value="Waktu Tes Mulai"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label
+								value="@load(vm.obj.waktumulaitest) @converter('formatedDate', format='dd-MM-yyyy HH:mm')" />
+						</n:td>
+						<n:td>
+							<label value="Score"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label value="@load(vm.obj.score)" />
+							<label value="%" />
+						</n:td>
+					</n:tr>
+					<n:tr>
+						<n:td>
+							<label value="Waktu Tes Selesai"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label
+								value="@load(vm.obj.waktumulaitest) @converter('formatedDate', format='dd-MM-yyyy HH:mm')" />
+						</n:td>
+						<n:td>
+							<label value="Jumlah Jawaban Benar"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label
+								value="@load(vm.obj.jumlahbenar)" />
+						</n:td>
+					</n:tr>
+					
+					<n:tr>
+						<n:td>
+							<label value="Waktu Penyelesaian"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<label
+								value="@load(vm.obj.lamates)" />
+							<label
+								value="Menit" />
+						</n:td>
+						<n:td>
+							<label value="Hasil Tes"
+								style="font-weight: bold" />
+						</n:td>
+						<n:td>
+							<combobox
+								selectedItem="@load(vm.obj.ispass)" disabled="true" buttonVisible="false">
+								<comboitem label="Lulus" value="Y" />
+								<comboitem label="Tidak Lulus"
+									value="N" />
+							</combobox>
+						</n:td>
+					</n:tr>
+				</n:table>
+			</groupbox>
+			<separator />
+			<panel title="Evaluasi" border="normal">
+				<panelchildren>
+					<tabbox width="100%" sclass="nav_tabs">
+						<tabs id="tabs">
+							<tab label="Form Evaluasi"
+								onSelect="@command('doTab', tab='evaluasi')" />
+							<tab label="Memo"
+								onSelect="@command('doTab', tab='memo')" />
+						</tabs>
+					</tabbox>
+					<div id="tabPage" />
+				</panelchildren>
+			</panel>
+			<separator />
+			<panel title="Soal" border="normal">
+				<panelchildren>
+					<div id="divQuestList" />
+				</panelchildren>
+			</panel>
+		</div>
+	</window>
+</zk>

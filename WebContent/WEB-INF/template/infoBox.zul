@@ -1,0 +1,20 @@
+<zk xmlns="native">
+    <div class="infoBox rounded p-1 ${color}">
+        <div class="row mx-1">
+            <span class="z-label text-black-50">${each.title}</span>
+        </div>
+        <div class="row mx-1 my-2">
+            <div class="col-12 h3 text-center">
+                ${each.incompleted}
+            </div>
+            <div class="col-12 text-center">
+                ${each.topic}
+            </div>
+        </div>
+        <div class="row mx-1 ">
+            <div class="col-12 text-center border-top">
+                <span class="z-label text-black-50">completed: ${each.completed}</span>
+            </div>
+        </div>
+    </div>
+</zk>

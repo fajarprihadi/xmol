@@ -1,0 +1,78 @@
+<?link rel="stylesheet" href="/resources/bootstrap/4.3.1/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="/resources/css/zk-admin-bootstrap-theme.css"?>
+<?link rel="stylesheet" href="/resources/css/layout.css" ?>
+<?link rel="stylesheet" href="/resources/css/zk-bootstrap.css" ?>
+<zk xmlns:n="native">
+	<div sclass="container-fluid" hflex="1"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.EvalVM')"
+		validationMessages="@id('vmsgs')">
+		<n:div class="row py-1">
+			<n:div class="col-12 p-1">
+				<grid
+					form="@id('e') @load(vm.objForm) @save(vm.objForm, before='doSave')
+			@validator(vm.validator) ">
+					<columns>
+						<column width="150px" />
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="Status Evaluasi" />
+							<label value="@load(vm.statuseval)" />
+						</row>
+						<row id="rowDecision">
+							<label value="Keputusan" />
+							<hlayout>
+								<combobox id="cbStatus" readonly="true"
+									selectedItem="@bind(vm.status)"
+									onChange="@command('doSelectStatus', item=vm.status)" />
+								<label style="color:red"
+									value="@load(vmsgs['status'])" />
+							</hlayout>
+						</row>
+						<row id="rowInterview" visible="false">
+							<label value="Tanggal Interview" />
+							<hlayout>
+								<datebox id="dtInterview" value="@bind(e.tglinterview)"
+									format="dd-MM-yyyy" cols="12" maxlength="10" />
+								<label style="color:red"
+									value="@load(vmsgs['tglinterview'])" />
+							</hlayout>
+						</row>
+						<row id="rowPsikotes" visible="false">
+							<label value="Tanggal Psikotes" />
+							<hlayout>
+								<datebox id="dtPsikotes" value="@bind(e.tglpsikotes)"
+									format="dd-MM-yyyy" cols="12" maxlength="10" />
+								<label style="color:red"
+									value="@load(vmsgs['tglpsikotes'])" />
+							</hlayout>
+						</row>
+						<row id="rowJoin" visible="false">
+							<label value="Tanggal Join" />
+							<hlayout>
+								<datebox id="dtJoin" value="@bind(e.tgljoin)"
+									format="dd-MM-yyyy" cols="12" maxlength="10" />
+								<label style="color:red"
+									value="@load(vmsgs['tgljoin'])" />
+							</hlayout>
+						</row>
+						<row id="rowMemo">
+							<label value="Memo" />
+							<textbox value="@bind(vm.memo)" cols="70"
+								rows="3" maxlength="250" />
+						</row>
+					</rows>
+					<foot>
+						<footer />
+						<footer>
+							<button id="btSave"
+								sclass="btn btn-primary btn-sm" autodisable="self"
+								label="Submit" onClick="@command('doSave')" width="150px" />
+						</footer>
+					</foot>
+				</grid>
+			</n:div>
+		</n:div>
+	</div>
+</zk>

@@ -1,0 +1,26 @@
+<?link rel="stylesheet" href="/resources/bootstrap/4.3.1/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="/resources/css/zk-admin-bootstrap-theme.css"?>
+<?link rel="stylesheet" href="/resources/css/layout.css" ?>
+<?link rel="stylesheet" href="/resources/css/zk-bootstrap.css" ?>
+<zk xmlns:n="native">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+	</script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js">
+	</script>
+	<hlayout viewModel="@id('vm')@init('com.fp.xmol.viewmodel.MainVM')"
+		width="100%">
+		<apply templateURI="sidebar.zul" />
+		<div sclass="container-fluid" hflex="1">
+			<apply templateURI="@load(vm.navigationModel.contentUrl)" />
+		</div>
+	</hlayout>
+	<script>
+		$(document).ready(function() { function disableBack() {
+		window.history.forward() }
+
+		window.onload = disableBack(); window.onpageshow = function(evt)
+		{ if (evt.persisted) disableBack() } });
+	</script>
+</zk>

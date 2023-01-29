@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<?page title="${desktop.webApp.appName}" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/images/app_icon.ico" ?>
+<?link rel="stylesheet" href="/resources/bootstrap/4.3.1/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="/resources/css/zk-admin-bootstrap-theme.css"?>
+<?link rel="stylesheet" href="/resources/css/layout.css" ?>
+<?link rel="stylesheet" href="/resources/css/zk-bootstrap.css" ?>
+
+<zk xmlns:w="client" xmlns:n="native">
+	<style>
+		#fmlogin { background-color: white; border-radius: 20px;
+		padding-top: 40px; padding-bottom: 10px; }
+	</style>
+	<div id="bdlogin" class="container-fluid"
+		style="background-image: url('resources/image/lp.jpg'); background-repeat: no-repeat; background-attachment: inherit;
+		background-position: center; background-size: cover;"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.AuthentificationVm')">
+		<div class="row animated fadeIn vh-100">
+			<div class="col-md-4 offset-md-7 text-center my-auto">
+				<!-- <n:img src="images/ecms_brand.png"
+					class="img-fluid mb-4" width="220px" height="55px">
+				</n:img> -->
+				<n:h3>XMOL</n:h3>
+				<n:form id="fmlogin"
+					class="text-center border border-light z-depth-1-half pl-4 pr-4">
+					<label sclass="text-danger"
+						value="@bind(vm.lblMessage)" />
+					<textbox id="tbUsername" value="@bind(vm.userid)"
+						maxlength="15" focus="true"
+						sclass="form-control form-control-md mb-4 rounded-pill"
+						placeholder="Username" />
+					<textbox id="tbPassword" value="@bind(vm.password)"
+						type="password" maxlength="20"
+						sclass="form-control form-control-md mb-4 rounded-pill"
+						onOK="@command('doLogin')" placeholder="Password" />
+					<button onClick="@command('doLogin')" autodisable="self"
+						class="btn btn-info btn-block my-4 rounded-pill" label="LOGIN" />
+
+				</n:form>
+				<div class="mt-5">
+					<n:span>&#169; Copyright 2020</n:span>
+					<n:img src="resources/image/sdd.png"  width="80px" height="40px">
+					</n:img>					
+				</div>
+			</div>
+			<div class="col-md-1 my-auto"></div>
+		</div>
+	</div>
+</zk>

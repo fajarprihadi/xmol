@@ -1,0 +1,38 @@
+<?link rel="stylesheet" href="/resources/bootstrap/4.3.1/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="/resources/css/zk-admin-bootstrap-theme.css"?>
+<?link rel="stylesheet" href="/resources/css/layout.css" ?>
+<?link rel="stylesheet" href="/resources/css/zk-bootstrap.css" ?>
+<zk xmlns:n="native">
+	<n:br/>
+	<div sclass="container-fluid" hflex="1">
+		<separator />
+		<div class="card">
+			<div class="card-header">
+				<n:h5>
+					Terima kasih sudah mengikuti Program Rekrutmen di PT Swadharma
+					Duta Data
+				</n:h5>
+			</div>
+			<div class="card-body">
+				<n:p class="card-text">
+					Pengumuman lulus akan dihubungi kembali kurang lebih
+					dalam waktu 2 minggu, apabila tidak dihubungi dalam
+					waktu tersebut bearti Anda tidak lanjut ke tahap
+					selanjutnya.
+					<n:br />
+					Bagi pelamar yang lulus tes akan dihubungi oleh HRD
+					melalui telfon atau email.
+				</n:p>
+				<!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+			</div>
+			<div class="card-footer text-muted">
+				<div align="center">
+					<n:span>&#169; Copyright 2020</n:span>
+					<n:br />
+					<image src="/resources/image/sdd.png"
+						sclass="img-fluid mr-3" />
+				</div>
+			</div>
+		</div>
+	</div>
+</zk>

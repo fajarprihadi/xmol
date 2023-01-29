@@ -1,0 +1,23 @@
+<zk xmlns:n="native">
+	<window border="normal"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.BankSoalLinkVM')"
+		validationMessages="@id('vmsgs')">
+		<caption label="Link Soal" />
+
+		<div class="card">
+			<div class="card-header">
+				<label value="@load(vm.obj.kodesoal)" />
+			</div>
+			<div class="card-body">
+				<n:h5 class="card-title">
+					<label value="Link Soal : " />
+				<label value="@load(vm.linkid)" style="font-weight: bold" /></n:h5>
+				<label value="Copy link soal dan tautkan ke URL browser untuk proses uji soal" />
+				<n:hr/>
+				<button sclass="btn btn-primary btn-sm"
+					autodisable="self" label="Re-Generate Link"
+					onClick="@command('doGenerate')" />
+			</div>
+		</div>
+	</window>
+</zk>

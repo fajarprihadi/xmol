@@ -1,0 +1,120 @@
+<zk xmlns:n="native">
+	<window width="98%" border="normal"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.QuestionVM')"
+		validationMessages="@id('vmsgs')">
+		<caption label="Buat Soal" />
+
+		<groupbox mold="3d">
+			<caption label="Informasi Bank Soal" />
+			<grid>
+				<columns>
+					<column width="120px" />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="Departemen" />
+						<label
+							value="@load(vm.obj.mdepartment.deptcode)" />
+					</row>
+					<row>
+						<label value="Kode Soal" />
+						<label value="@load(vm.obj.kodesoal)" />
+					</row>
+					<row>
+						<label value="Deskripsi" />
+						<label value="@load(vm.obj.deskripsi)" />
+					</row>
+					<row>
+						<label value="Jumlah Soal" />
+						<label value="@load(vm.obj.jumlahsoal)" />
+					</row>
+					<row>
+						<label value="Durasi Tes (Menit)" />
+						<label value="@load(vm.obj.durasi)" />
+					</row>
+					<row>
+						<label value="Passing Score (%)" />
+						<label value="@load(vm.obj.passingscore)" />
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<separator />
+		<panel title="Soal" border="normal">
+			<panelchildren>
+				<groupbox mold="3d"
+					form="@id('e') @load(vm.objForm) @save(vm.objForm, before='doSave')
+			@validator(vm.validator) ">
+					<caption label="Form Soal" />
+					<grid>
+						<columns>
+							<column width="120px" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<label value="Pertanyaan" />
+								<vlayout>
+									<button label="Upload Gambar"
+										sclass="btn btn-default btn-sm" upload="true,maxsize=2048"
+										onUpload="@command('doUpload', upEvent=event)"
+										autodisable="self" />
+									<image id="img" />
+									<hlayout>
+										<textbox placeholder="Soal"
+											value="@bind(e.questiontext)" maxlength="500" rows="5"
+											cols="100" multiline="true" />
+										<label style="color:red"
+											value="@load(vmsgs['questiontext'])" />
+									</hlayout>
+								</vlayout>
+							</row>
+							<row>
+								<label value="Jawaban" />
+								<div
+									form="@id('f') @load(vm.objAnswer) @save(vm.objAnswer, before='doSaveAnswer') @validator(vm.validatorAnswer) ">
+									<hlayout>
+										<textbox placeholder="Jawaban"
+											value="@bind(f.answertext)" maxlength="250" rows="3"
+											cols="100" />
+										<label style="color:red"
+											value="@load(vmsgs['answertext'])" />
+									</hlayout>
+									<separator />
+									<checkbox id="chkRight"
+										label="Set Sebagai Jawaban Benar" />
+									<separator />
+									<button
+										sclass="btn btn-success btn-sm" autodisable="self"
+										label="Simpan Jawaban" onClick="@command('doSaveAnswer')" />
+									<separator />
+								</div>
+							</row>
+							<row>
+								<label />
+								<div id="divAnswers" />
+							</row>
+						</rows>
+						<foot>
+							<footer />
+							<footer>
+								<n:div class="btn-group" role="group">
+									<button id="btnSave"
+										sclass="btn btn-primary btn-sm" autodisable="self"
+										label="Submit" onClick="@command('doSave')"
+										width="200px" />
+								</n:div>
+							</footer>
+						</foot>
+					</grid>
+				</groupbox>
+				<separator />
+				<groupbox mold="3d">
+					<caption label="Informasi Soal Terakhir" />
+					<div id="divQuestLast" />
+				</groupbox>				
+			</panelchildren>
+		</panel>
+	</window>
+</zk>

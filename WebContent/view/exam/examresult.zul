@@ -1,0 +1,140 @@
+<zk xmlns:n="native">
+	<div sclass="container-fluid" hflex="1">
+		<n:div class="row py-1">
+			<n:div class="col-12 p-1">
+				<panel title="Evaluasi" border="normal"
+					viewModel="@id('vm') @init('com.fp.xmol.viewmodel.ExamResultVM')">
+					<panelchildren>
+						<groupbox mold="3d">
+							<caption label="Form Pencarian" />
+							<grid>
+								<columns>
+									<column width="120px" />
+									<column />
+								</columns>
+								<rows>
+									<row>
+										<label value="Departemen" />
+										<combobox id="cbDept"
+											model="@load(vm.mdepartment)"
+											selectedItem="@bind(vm.dept)">
+											<template name="model"
+												var="mdepartment">
+												<comboitem
+													label="@load(mdepartment.deptcode)"
+													description="@load(mdepartment.deptname)" />
+											</template>
+										</combobox>
+									</row>
+									<row>
+										<label value="Kode Soal" />
+										<textbox
+											value="@bind(vm.kodesoal)" maxlength="10" />
+									</row>
+									<row>
+										<label value="Nama" />
+										<textbox value="@bind(vm.nama)"
+											maxlength="40" />
+									</row>
+									<row>
+										<label value="Hasil Tes" />
+										<combobox id="cbIspass"
+											readonly="true" selectedItem="@bind(vm.ispass)">
+											<comboitem value="All"
+												label="All" />
+											<comboitem value="Y"
+												label="Lulus" />
+											<comboitem value="N"
+												label="Tidak Lulus" />
+										</combobox>
+									</row>
+									<row id="rowStatus">
+										<label value="Status" />
+										<combobox id="cbStatus"
+											readonly="true" selectedItem="@bind(vm.status)">
+										</combobox>
+									</row>
+									<row>
+										<label value="Periode" />
+										<hbox>
+											<datebox value="@bind(vm.startdate)" maxlength="10" cols="12" format="dd-MM-yyyy" />
+											<label value="s/d" />
+											<datebox value="@bind(vm.enddate)" maxlength="10" cols="12" format="dd-MM-yyyy" />
+										</hbox>
+									</row>
+								</rows>
+								<foot>
+									<footer />
+									<footer>
+										<div class="row">
+											<div class="col-8">
+												<n:div class="btn-group"
+													role="group">
+													<button
+														sclass="btn btn-default btn-sm" autodisable="self"
+														label="${labels.common.search}"
+														onClick="@command('doSearch')" />
+													<button
+														autodisable="self" sclass="btn btn-default btn-sm"
+														label="${labels.common.reset}"
+														onClick="@command('doReset')" />
+												</n:div>
+											</div>
+											<div class="col-4"
+												align="right">
+												<button
+													sclass="btn btn-success btn-sm" autodisable="self"
+													label="Export To Excel" onClick="@command('doExport')" />
+											</div>
+										</div>
+									</footer>
+								</foot>
+							</grid>
+						</groupbox>
+						<separator />
+						<div class="row">
+							<div class="col-md-10">
+								<paging id="paging" autohide="true" />
+							</div>
+							<div class="col-md-2" align="right">
+								<label value="Total Record :"
+									style="font-weight: bold" />
+								<label value="@load(vm.pageTotalSize)"
+									style="font-weight: bold" />
+							</div>
+						</div>
+						<groupbox mold="3d">
+							<caption label="Daftar Kandidat" />
+							<listbox id="listbox"
+								emptyMessage="${labels.common.emptymsg}"
+								selectedItem="@bind(vm.objForm)">
+								<listhead>
+									<listheader
+										label="${labels.common.no}" align="right" width="60px" />
+									<listheader label="Departemen"
+										align="center" />
+									<listheader label="Nama" />
+									<listheader label="Tgl Lahir"
+										align="center" />
+									<listheader label="Kode Soal" />
+									<listheader label="Tgl Tes"
+										align="center" />
+									<listheader label="Passing Score"
+										align="right" />
+									<listheader label="Score"
+										align="right" />
+									<listheader label="Hasil Tes"
+										align="center" />
+									<listheader
+										label="${labels.common.status}" align="center" />
+									<listheader
+										label="${labels.common.action}" align="center" />
+								</listhead>
+							</listbox>
+						</groupbox>
+					</panelchildren>
+				</panel>
+			</n:div>
+		</n:div>
+	</div>
+</zk>

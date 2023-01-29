@@ -1,0 +1,105 @@
+<zk xmlns:n="native">
+	<n:div class="row py-1">
+		<n:div class="col-12 p-1">
+			<panel title="Master Bank Soal" border="normal"
+				viewModel="@id('vm') @init('com.fp.xmol.viewmodel.DeptVM')"
+				validationMessages="@id('vmsgs')">
+				<panelchildren>
+					<groupbox mold="3d"
+						form="@id('e') @load(vm.objForm) @save(vm.objForm, before='doSave')
+			@validator(vm.validator) ">
+						<caption label="Form Departemen" />
+						<grid>
+							<columns>
+								<column width="120px" />
+								<column />
+							</columns>
+							<rows>								
+								<row>
+									<label value="Kode Departemen" />
+									<hlayout>
+										<textbox
+											value="@bind(e.deptcode)" maxlength="10" />
+										<label style="color:red"
+											value="@load(vmsgs['deptcode'])" />
+									</hlayout>
+								</row>
+								<row>
+									<label value="Nama Departemen" />
+									<hlayout>
+										<textbox
+											value="@bind(e.deptname)" maxlength="70" />
+										<label style="color:red"
+											value="@load(vmsgs['deptname'])" />
+									</hlayout>
+								</row>
+								<row>
+									<label value="Nama PIC" />
+									<hlayout>
+										<textbox
+											value="@bind(e.picname)" maxlength="40" />
+										<label style="color:red"
+											value="@load(vmsgs['picname'])" />
+									</hlayout>
+								</row>
+								<row>
+									<label value="No HP PIC" />
+									<hlayout>
+										<textbox
+											value="@bind(e.pichp)" maxlength="20" />
+										<label style="color:red"
+											value="@load(vmsgs['pichp'])" />
+									</hlayout>
+								</row>
+								<row>
+									<label value="E-mail PIC" />
+									<hlayout>
+										<textbox
+											value="@bind(e.picemail)" maxlength="100" />
+										<label style="color:red"
+											value="@load(vmsgs['picemail'])" />
+									</hlayout>
+								</row>
+							</rows>
+							<foot>
+								<footer />
+								<footer>
+									<n:div class="btn-group"
+										role="group">
+										<button id="btnSave"
+											sclass="btn btn-default btn-sm" autodisable="self"
+											label="${labels.common.save}" onClick="@command('doSave')" />
+										<button id="btnCancel"
+											autodisable="self" sclass="btn btn-default btn-sm"
+											label="${labels.common.cancel}"
+											onClick="@command('doCancel')" />
+										<button id="btnDelete"
+											autodisable="self" sclass="btn btn-default btn-sm"
+											label="${labels.common.del}" onClick="@command('doDelete')" />
+									</n:div>
+								</footer>
+							</foot>
+						</grid>
+					</groupbox>
+					<separator />
+					<groupbox mold="3d">
+						<caption label="Daftar Departemen" />
+						<listbox id="listbox"
+							emptyMessage="${labels.common.emptymsg}"
+							selectedItem="@bind(vm.objForm)">
+							<listhead>
+								<listheader label="${labels.common.no}"
+									align="right" width="60px" />
+								<listheader label="Kode Departemen" />
+								<listheader label="Nama Departemen" />
+								<listheader label="Nama PIC" />
+								<listheader label="No HP PIC" />
+								<listheader label="E-mail PIC" />								
+							</listhead>
+						</listbox>
+					</groupbox>
+				</panelchildren>
+			</panel>
+		</n:div>
+	</n:div>
+</zk>

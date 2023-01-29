@@ -1,0 +1,65 @@
+<zk xmlns:n="native">
+	<window width="100%" height="100%" border="normal"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.ExamDocVM')">
+		<caption label="Dokumen Kandidat" />
+		<panel title="@load(vm.obj.nama)" border="normal"
+			height="100%">
+			<panelchildren>
+				<div class="row">
+					<div class="col-3">
+						<groupbox mold="3d">
+							<caption label="Upload Dokumen" />
+							<grid>
+								<columns>
+									<column />
+								</columns>
+								<rows>
+									<row>
+										<vlayout>
+											<button
+												label="Browse Dokumen" sclass="btn btn-default btn-sm"
+												upload="true,maxsize=5000,multiple=true"
+												onUpload="@command('doUpload', upEvent=event)"
+												autodisable="self" />
+											<div id="divFiles" />
+										</vlayout>
+									</row>
+								</rows>
+								<foot>
+									<footer>
+										<button id="btSave"
+											sclass="btn btn-primary btn-sm" autodisable="self"
+											width="100%" label="${labels.common.save}"
+											onClick="@command('doSave')" />
+									</footer>
+								</foot>
+							</grid>
+						</groupbox>
+						<n:hr />
+						<groupbox mold="3d">
+							<caption label="Daftar Dokumen" />
+							<listbox id="listbox"
+								selectedItem="@bind(vm.objForm)">
+								<listhead>
+									<listheader label="Nama File" />
+									<listheader label="Action"
+										align="center" width="80px" />
+								</listhead>
+								<listitem />
+							</listbox>
+						</groupbox>
+					</div>
+					<div class="col-9">
+						<panel title="@load(vm.objForm.docfilename)"
+							border="normal">
+							<panelchildren>
+								<iframe src="@load(vm.docsrc)"
+									width="100%" height="800px" />
+							</panelchildren>
+						</panel>
+					</div>
+				</div>
+			</panelchildren>
+		</panel>
+	</window>
+</zk>

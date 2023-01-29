@@ -1,0 +1,125 @@
+<?link rel="stylesheet" href="/resources/bootstrap/4.3.1/css/bootstrap.min.css"?>
+<?link rel="stylesheet" href="/resources/css/zk-admin-bootstrap-theme.css"?>
+<?link rel="stylesheet" href="/resources/css/layout.css" ?>
+<?link rel="stylesheet" href="/resources/css/zk-bootstrap.css" ?>
+<zk xmlns:n="native">
+	<div sclass="container-fluid" hflex="1"
+		viewModel="@id('vm') @init('com.fp.xmol.viewmodel.ExamQuestVM')"
+		validationMessages="@id('vmsgs')">
+		<script type="text/javascript">
+			window.onload = function () { document.onkeydown = function
+			(e) { return (e.which || e.keyCode) != 116; }; }
+		</script>
+		<n:div class="row py-1">
+			<n:div class="col-12 p-1">
+				<panel title="Program Rekrutmen PT Swadharma Duta Data"
+					border="normal">
+					<panelchildren>
+						<timer id="timer" delay="1000" repeats="true" />
+						<div align="right">
+							<label value="Sisa Waktu Tes : "
+								style="font-size: 16px; font-weight: bold" />
+							<label value="@load(vm.countdown)"
+								style="font-size: 16px; font-weight: bold" />
+						</div>
+						<separator />
+						<n:table class="table table-sm table-striped">
+							<n:tr>
+								<n:td>
+									<label value="Nama"
+										style="font-weight: bold" />
+								</n:td>
+								<n:td>
+									<label value="@load(vm.texam.nama)" />
+								</n:td>
+								<n:td>
+									<label value="Kode Soal"
+										style="font-weight: bold" />
+								</n:td>
+								<n:td>
+									<label
+										value="@load(vm.texam.tbanksoal.kodesoal)" />
+								</n:td>
+							</n:tr>
+							<n:tr>
+								<n:td>
+									<label value="Waktu Mulai"
+										style="font-weight: bold" />
+								</n:td>
+								<n:td>
+									<label
+										value="@load(vm.texam.waktumulaitest) @converter('formatedDate', format='dd-MM-yyyy HH:mm')" />
+								</n:td>
+								<n:td>
+									<label value="Jumlah Soal"
+										style="font-weight: bold" />
+								</n:td>
+								<n:td>
+									<label
+										value="@load(vm.texam.jumlahsoal)" />
+								</n:td>
+							</n:tr>
+						</n:table>
+						<label value="Progres Anda : "
+							style="font-weight: bold" />
+						<div id="divProgress" class="progress"></div>
+						<separator />					
+						<div class="alert alert-info" align="center">Untuk menuju soal sebelum atau sesudah silahkan klik tombol pada dibagian bawah soal</div>
+					</panelchildren>
+				</panel>
+			</n:div>
+		</n:div>
+
+		<n:div class="row py-1">
+			<n:div class="col-12 p-1">
+				<panel title="Soal" border="normal">
+					<panelchildren>
+						<div
+							form="@id('e') @load(vm.texamquest) @save(vm.texamquest, before='doSave')">
+							<vlayout>
+								<image id="img" />
+								<hlayout>
+									<label value="@load(vm.questno)" />
+									<label value="." />
+									<!-- <div id="divQuest" /> -->
+									<textbox id="tbQuest"
+										value="@load(e.questiontext)" readonly="true" cols="70"
+										multiline="true" />
+								</hlayout>
+							</vlayout>
+						</div>
+						<radiogroup id="radioAnswer" orient="vertical"
+							selectedItem="@bind(vm.answerno)" onCheck="@command('doAnswer')" />
+						<n:hr />
+						<div align="right" sclass="container-fluid"
+							hflex="1">
+							<n:div class="row py-1">
+								<n:div class="col-12 p-1">
+									<button id="btPrev"
+										sclass="btn btn-primary btn-sm" autodisable="self"
+										label="Sebelumnya"
+										onClick="@command('doLoadQuest', act='prev')" />
+									<button id="btNext"
+										sclass="btn btn-primary btn-sm" autodisable="self"
+										label="Berikutnya"
+										onClick="@command('doLoadQuest', act='next')" />
+									<button id="btFinish"
+										visible="false" sclass="btn btn-primary btn-sm"
+										autodisable="self" label="Selesai"
+										onClick="@command('doFinish')" />
+								</n:div>
+							</n:div>
+						</div>
+					</panelchildren>
+				</panel>
+				<separator />
+				<div align="center">
+					<n:span>&#169; Copyright 2020</n:span>
+					<n:br />
+					<image src="/resources/image/sdd.png"
+						 width="80px" height="40px" />
+				</div>
+			</n:div>
+		</n:div>
+	</div>
+</zk>

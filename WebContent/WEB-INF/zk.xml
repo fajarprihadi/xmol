@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Created by ZK Studio
+-->
+
+<zk>
+	<device-config>
+		<device-type>ajax</device-type>
+		<timeout-uri>/timeout.zul</timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->
+	</device-config>
+	
+	<preference>
+		<name>org.zkoss.zk.ui.WebApp.name</name>
+		<value>XMOL</value>
+	</preference>
+	
+	<listener>
+		<listener-class>com.fp.utils.db.HibernateListeners</listener-class>		
+	</listener>
+	
+	<library-property>
+		<name>org.zkoss.theme.preferred</name>
+		<value>iceblue_c</value>
+	</library-property>
+	
+	<library-property>
+		<name>org.zkoss.zul.Paging.mold</name>
+		<value>os</value>
+	</library-property>
+	
+	<library-property>
+		<name>maxFlush</name>
+		<value>20</value>
+	</library-property>
+	
+	<library-property>
+		<name>maxBatchCommit</name>
+		<value>20000</value>
+	</library-property>
+</zk>
